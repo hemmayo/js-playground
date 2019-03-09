@@ -34,13 +34,6 @@ const filters = {
     
 // })
 
-document.querySelector('button#add-todo').addEventListener('click', function (){
-    console.log('Add a new todo')
-})
-
-document.querySelector('#new-todo-text').addEventListener('input', function (e) {
-    console.log(e.target.value)
-})
 
 // Setup a div container for tasks
 // Setup filters and wire up a new filter input to change it
@@ -60,6 +53,23 @@ const renderTodos = function (todos, filters){
 }
 document.querySelector('#search-text').addEventListener('input', function (e){
     filters.searchText = e.target.value
+    renderTodos(todos, filters)
+})
+
+// Create a new form with a single input for the todo text
+// Set up a submit handler and cancel the default action
+// Add a new item to the todos array with that text data, with completed value as false
+// Rerender the application
+// Clear the input field value
+
+document.querySelector('#add-todo-form').addEventListener('submit', function (e) {
+    e.preventDefault()
+    let newTodo = {
+        text: e.target.elements.todoText.value,
+        completed: false
+    }
+    todos.push(newTodo)
+    e.target.elements.todoText.value = ''
     renderTodos(todos, filters)
 })
 renderTodos(todos, filters)

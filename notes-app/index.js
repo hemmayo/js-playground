@@ -42,19 +42,10 @@ const renderNotes = function (notes, filters) {
     })
 }
 
-const deleteAllNotes = function () {
-    document.querySelector('#notes').innerHTML = ''
-}
 document.querySelector('#create-note').addEventListener('click', function (e) {
     e.target.textContent = 'The button was clicked'
 })
 
-document.querySelector('#remove-all').addEventListener('click', function (e) {
-    console.log('Delete notes')
-    document.querySelectorAll('.note').forEach(note => {
-        note.remove()
-    })
-})
 
 document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
