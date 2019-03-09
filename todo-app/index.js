@@ -38,8 +38,11 @@ todos.forEach(todo => {
 })
 
 // Event Listener
-document.querySelector('button').addEventListener('click', function (e) {
-    console.log('Add a new todo')
+// document.querySelector('button').addEventListener('click', function (e) {
+//     console.log('Add a new todo')
     
-})
+// })
 
+document.querySelector('button#add-todo').addEventListener('click', function (){
+    console.log('Add a new todo')
+})
