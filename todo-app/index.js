@@ -23,7 +23,8 @@ const todos = [
 ]
 
 const filters = {
-    searchText: ''
+    searchText: '',
+    hideCompleted: false
 }
 // You have 2 todos left
 // Print a paragraph for each todo above
@@ -42,6 +43,9 @@ const filters = {
 const renderTodos = function (todos, filters){
     let filteredTodos = todos.filter(todo => todo.text.toLowerCase().includes(filters.searchText.toLowerCase()))
     let todosLeft = filteredTodos.filter(todo => !todo.completed).length
+    if(filters.hideCompleted) {
+        filteredTodos = filteredTodos.filter(todo => !todo.completed)
+    }
 
     document.querySelector('#todos').innerHTML = ''
     document.querySelector('#todo-count').textContent = `${todosLeft}`
@@ -72,4 +76,15 @@ document.querySelector('#add-todo-form').addEventListener('submit', function (e)
     e.target.elements.todoText.value = ''
     renderTodos(todos, filters)
 })
+
+// Create a checkbox and setup event listener -> "hide completed"
+// Create a new hideCompleted filter (default false)
+// Update hideCompleted and rerender list on checkbox change
+// Setup rerender todos to hide completed items
+
+document.querySelector('#hideCompleted').addEventListener('change', function (e) {
+    filters.hideCompleted = e.target.checked
+    renderTodos(todos, filters)
+})
+
 renderTodos(todos, filters)

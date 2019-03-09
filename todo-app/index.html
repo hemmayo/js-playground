@@ -7,12 +7,16 @@
     <h1>Todo App</h1>
     <h2>You have <span id="todo-count">0</span> todos left</h2>
     <input type="text" placeholder="Filter todos" id="search-text">
+    <label for="hideCompleted">
+        <input type="checkbox" id="hideCompleted" /> Hide completed 
+    </label>
     <form id="add-todo-form">
         <input name="todoText" placeholder="Enter something to do" type="text">
         <button type="submit">Add Todo</button>
     </form>
     
     <div id="todos"></div>
+    
     <script src="index.js"></script>
 </body>
 </html>
