@@ -22,20 +22,11 @@ const todos = [
     }
 ]
 
+const filters = {
+    searchText: ''
+}
 // You have 2 todos left
 // Print a paragraph for each todo above
-
-let todosLeft = todos.filter(todo => !todo.completed).length
-let summary = document.createElement('h2')
-summary.textContent = `You have ${todosLeft} todos left.`
-document.querySelector('body').appendChild(summary)
-
-todos.forEach(todo => {
-    const p = document.createElement('p')
-    p.textContent = todo.text
-    document.querySelector('body').appendChild(p)
-
-})
 
 // Event Listener
 // document.querySelector('button').addEventListener('click', function (e) {
@@ -50,3 +41,25 @@ document.querySelector('button#add-todo').addEventListener('click', function (){
 document.querySelector('#new-todo-text').addEventListener('input', function (e) {
     console.log(e.target.value)
 })
+
+// Setup a div container for tasks
+// Setup filters and wire up a new filter input to change it
+// Create a renderTodos function to render and rerender the latest filtered data
+
+const renderTodos = function (todos, filters){
+    let filteredTodos = todos.filter(todo => todo.text.toLowerCase().includes(filters.searchText.toLowerCase()))
+    let todosLeft = filteredTodos.filter(todo => !todo.completed).length
+
+    document.querySelector('#todos').innerHTML = ''
+    document.querySelector('#todo-count').textContent = `${todosLeft}`
+    filteredTodos.forEach(todo => {
+        let p = document.createElement('p')
+        p.textContent = todo.text
+        document.querySelector('#todos').append(p)
+    })
+}
+document.querySelector('#search-text').addEventListener('input', function (e){
+    filters.searchText = e.target.value
+    renderTodos(todos, filters)
+})
+renderTodos(todos, filters)
