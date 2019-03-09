@@ -37,3 +37,9 @@ todos.forEach(todo => {
 
 })
 
+// Event Listener
+document.querySelector('button').addEventListener('click', function (e) {
+    e.target.textContent = 'Button clicked'
+    console.log(e)
+})
+
