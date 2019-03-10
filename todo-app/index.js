@@ -6,26 +6,18 @@
 //     }
 // })
 
-const todos = [
-    {
-        text: 'Go home',
-        completed: false
-    }, {
-        text: 'Pray to God',
-        completed: false
-    }, {
-        text: 'Watch Movies',
-        completed: true
-    }, {
-        text: 'Sleep',
-        completed: true
-    }
-]
+let todos = []
 
 const filters = {
     searchText: '',
     hideCompleted: false
 }
+
+let todosJSON = localStorage.getItem('todos')
+if (todosJSON) {
+    todos = JSON.parse(todosJSON)
+}
+
 // You have 2 todos left
 // Print a paragraph for each todo above
 
@@ -73,7 +65,9 @@ document.querySelector('#add-todo-form').addEventListener('submit', function (e)
         completed: false
     }
     todos.push(newTodo)
-    e.target.elements.todoText.value = ''
+    localStorage.setItem('todos', JSON.stringify(newTodo))
+    // e.target.elements.todoText.value = ''
+    e.target.reset()
     renderTodos(todos, filters)
 })
 
