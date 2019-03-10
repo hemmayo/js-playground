@@ -19,21 +19,37 @@ const notes = [
         title: 'How to push to github without git',
         body: 'hmmm..'
     }, {
-        title: 'My next trip',
-        body: 'I want to travel'
-    }, {
         title: 'My super recipe',
         body: 'I will try to cook plantain'
+    }, {
+        title: 'My next trip',
+        body: 'I want to travel'
     }
 ]
 
 const filters = {
-    searchText: ''
+    searchText: '',
+    filterBy: ''
 }
 
 const renderNotes = function (notes, filters) {
-    const filteredNotes = notes.filter(note => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
+    let filteredNotes = notes.filter(note => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
+    switch (filters.filterBy) {
+        case 'alphabetical':
+            filteredNotes = filteredNotes.sort((a, b)=>{
+                return (a.title < b.title) ? -1 : (a.title > b.title) ? 1 : 0
+            })
+            break;
+        case 'edited':
+            
+            break;
+        case 'recent':
+            
+            break;
     
+        default:
+            break;
+    }
     document.querySelector('#notes').innerHTML = ''
     filteredNotes.forEach(note => {
         const p = document.createElement('p')
@@ -51,3 +67,9 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderNotes(notes, filters)
 })
+
+document.querySelector('#filter-by').addEventListener('change', function (e) {
+    filters.filterBy = e.target.value
+    renderNotes(notes, filters)
+})
+renderNotes(notes, filters)
