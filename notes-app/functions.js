@@ -10,9 +10,19 @@ const getSavedNotes = function () {
 
 // Generate notes dom
 const generateNoteDOM = function (note) {
-    const p = document.createElement('p')
-    p.textContent = note.title.length > 0 ? note.title : 'Unnamed note'
-    return p
+    const noteEl = document.createElement('div')
+    const textEl = document.createElement('span')
+    const button = document.createElement('button')
+
+    // Setup the remove note button
+    button.textContent = 'x'
+    noteEl.append(button)
+
+    // Setup the note title text
+    textEl.textContent = note.title.length > 0 ? note.title : 'Unnamed note'
+    
+    noteEl.append(textEl)
+    return noteEl
 }
 
 // Render application notes

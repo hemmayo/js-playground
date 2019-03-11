@@ -15,9 +15,24 @@ const saveTodos = function (todos) {
 
 // generate new todo dom
 const generateTodoDOM = function (todo) {
-    let p = document.createElement('p')
-    p.textContent = todo.text
-    return p
+    // Setup a root div
+    // Setup and append a checkbox (set type attribute)
+    // Setup and append a span (set text)
+    // Setup and append a button (set text)
+    const div = document.createElement('div')
+    const checkbox = document.createElement('input')
+    const text = document.createElement('span')
+    const button = document.createElement('button')
+
+    checkbox.setAttribute('type', 'checkbox')
+    text.textContent = todo.text
+    button.textContent = 'x'
+
+    div.appendChild(checkbox)
+    div.appendChild(text)
+    div.appendChild(button)
+
+    return div
 }
 
 // generate summary dom
