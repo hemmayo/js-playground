@@ -6,17 +6,14 @@
 //     }
 // })
 
-let todos = []
+let todos = getSavedTodos()
 
 const filters = {
     searchText: '',
     hideCompleted: false
 }
 
-let todosJSON = localStorage.getItem('todos')
-if (todosJSON) {
-    todos = JSON.parse(todosJSON)
-}
+
 
 // You have 2 todos left
 // Print a paragraph for each todo above
@@ -32,21 +29,6 @@ if (todosJSON) {
 // Setup filters and wire up a new filter input to change it
 // Create a renderTodos function to render and rerender the latest filtered data
 
-const renderTodos = function (todos, filters){
-    let filteredTodos = todos.filter(todo => todo.text.toLowerCase().includes(filters.searchText.toLowerCase()))
-    let todosLeft = filteredTodos.filter(todo => !todo.completed).length
-    if(filters.hideCompleted) {
-        filteredTodos = filteredTodos.filter(todo => !todo.completed)
-    }
-
-    document.querySelector('#todos').innerHTML = ''
-    document.querySelector('#todo-count').textContent = `${todosLeft}`
-    filteredTodos.forEach(todo => {
-        let p = document.createElement('p')
-        p.textContent = todo.text
-        document.querySelector('#todos').append(p)
-    })
-}
 document.querySelector('#search-text').addEventListener('input', function (e){
     filters.searchText = e.target.value
     renderTodos(todos, filters)
@@ -65,7 +47,7 @@ document.querySelector('#add-todo-form').addEventListener('submit', function (e)
         completed: false
     }
     todos.push(newTodo)
-    localStorage.setItem('todos', JSON.stringify(todos))
+    saveTodos(todos)
     // e.target.elements.todoText.value = ''
     e.target.reset()
     renderTodos(todos, filters)
