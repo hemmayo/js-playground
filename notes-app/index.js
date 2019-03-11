@@ -14,51 +14,17 @@
 // document.querySelector('body').appendChild(newParagraph)
 
 
-let notes = []
+const notes = getSavedNotes()
 
 const filters = {
     searchText: '',
     filterBy: ''
 }
 
-let notesJSON = localStorage.getItem('notes')
-if (notesJSON){
-    notes = JSON.parse(notesJSON)
-}
-
-const renderNotes = function (notes, filters) {
-    if(notes.length > 0) {
-        let filteredNotes = notes.filter(note => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
-        switch (filters.filterBy) {
-            case 'alphabetical':
-                filteredNotes = filteredNotes.sort((a, b)=>{
-                    return (a.title < b.title) ? -1 : (a.title > b.title) ? 1 : 0
-                })
-                break;
-            case 'edited':
-                
-                break;
-            case 'recent':
-                
-                break;
-        
-            default:
-                break;
-        }
-        document.querySelector('#notes').innerHTML = ''
-        filteredNotes.forEach(note => {
-            const p = document.createElement('p')
-            p.textContent = note.title.length > 0 ? note.title : 'Unnamed note'
-            document.querySelector('#notes').append(p)
-        })
-    } 
-    
-}
-
 document.querySelector('#create-note').addEventListener('submit', function (e) {
     e.preventDefault()
     notes.push({ title: e.target.elements.title.value , body:e.target.elements.body.value })
-    localStorage.setItem('notes', JSON.stringify(notes))
+    saveNotes(notes)
     renderNotes(notes, filters)
     e.target.reset()
 })
