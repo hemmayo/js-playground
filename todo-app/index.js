@@ -65,7 +65,7 @@ document.querySelector('#add-todo-form').addEventListener('submit', function (e)
         completed: false
     }
     todos.push(newTodo)
-    localStorage.setItem('todos', JSON.stringify(newTodo))
+    localStorage.setItem('todos', JSON.stringify(todos))
     // e.target.elements.todoText.value = ''
     e.target.reset()
     renderTodos(todos, filters)
