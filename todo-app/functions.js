@@ -44,7 +44,7 @@ const renderTodos = function (todos, filters){
     document.querySelector('#todos').innerHTML = ''
     filteredTodos.forEach(todo => {
         let p = generateTodoDOM(todo)
+        // debugger
         document.querySelector('#todos').append(p)
     })
 }
-
