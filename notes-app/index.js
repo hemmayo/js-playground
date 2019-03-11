@@ -23,7 +23,7 @@ const filters = {
 
 document.querySelector('#create-note').addEventListener('submit', function (e) {
     e.preventDefault()
-    notes.push({ title: e.target.elements.title.value , body:e.target.elements.body.value })
+    notes.push({ id: uuidv4(), title: e.target.elements.title.value , body:e.target.elements.body.value })
     saveNotes(notes)
     renderNotes(notes, filters)
     e.target.reset()

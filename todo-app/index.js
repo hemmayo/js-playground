@@ -43,6 +43,7 @@ document.querySelector('#search-text').addEventListener('input', function (e){
 document.querySelector('#add-todo-form').addEventListener('submit', function (e) {
     e.preventDefault()
     let newTodo = {
+        id: uuidv4(),
         text: e.target.elements.todoText.value,
         completed: false
     }
