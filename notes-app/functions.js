@@ -8,6 +8,15 @@ const getSavedNotes = function () {
     return notes
 }
 
+// Remove note
+const removeNote = function (id) {
+    const noteIndex = notes.findIndex((note) => note.id === id)
+    if (noteIndex > -1) {
+        notes.splice(noteIndex, 1)
+    }
+    saveNotes(notes)
+}
+
 // Generate notes dom
 const generateNoteDOM = function (note) {
     const noteEl = document.createElement('div')
@@ -16,6 +25,11 @@ const generateNoteDOM = function (note) {
 
     // Setup the remove note button
     button.textContent = 'x'
+    button.addEventListener('click', function () {
+        console.log(note)
+        removeNote(note.id)
+        renderNotes(notes, filters)
+    })
     noteEl.append(button)
 
     // Setup the note title text
@@ -27,6 +41,7 @@ const generateNoteDOM = function (note) {
 
 // Render application notes
 const renderNotes = function (notes, filters) {
+    document.querySelector('#notes').innerHTML = ''
     if(notes.length > 0) {
         let filteredNotes = notes.filter(note => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
         switch (filters.filterBy) {
@@ -45,7 +60,6 @@ const renderNotes = function (notes, filters) {
             default:
                 break;
         }
-        document.querySelector('#notes').innerHTML = ''
         filteredNotes.forEach(note => {
             const p = generateNoteDOM(note)
             document.querySelector('#notes').append(p)
