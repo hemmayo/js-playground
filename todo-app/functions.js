@@ -13,6 +13,12 @@ const saveTodos = function (todos) {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
+// remove todo
+const removeTodo = function (id) {
+    let index = todos.findIndex((todo) => todo.id === id)
+    todos.splice(index, 1)
+}
+
 // generate new todo dom
 const generateTodoDOM = function (todo) {
     // Setup a root div
@@ -27,6 +33,10 @@ const generateTodoDOM = function (todo) {
     checkbox.setAttribute('type', 'checkbox')
     text.textContent = todo.text
     button.textContent = 'x'
+    button.addEventListener('click', function () {
+        removeTodo(todo.id)
+        renderTodos(todos, filters)
+    })
 
     div.appendChild(checkbox)
     div.appendChild(text)
