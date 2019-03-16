@@ -57,4 +57,4 @@ renderNotes(notes, filters)
 
 // Dates - moment
 // const date = moment().year(2000).month('Feb').day(5)
-// console.log(date.format('MMM D, YYYY'))
+// console.log(date.format('MMMM D, YYYY'))
