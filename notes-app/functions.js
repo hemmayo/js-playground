@@ -1,7 +1,11 @@
 // Read exxisting notes from local storage
 const getSavedNotes = () => {
     let notesJSON = localStorage.getItem('notes')
-    return (notesJSON) ? JSON.parse(notesJSON) : []
+    try {
+        return (notesJSON) ? JSON.parse(notesJSON) : []
+    } catch (error) {
+        
+    }
 }
 
 // Remove note
