@@ -1,3 +1,5 @@
+'use strict'
+
 // get saved todos
 const getSavedTodos = () => {
     let todos = []

@@ -1,3 +1,5 @@
+'use strict'
+
 // Remove all p tags that have 'the' in the text
 // let paragraphs = document.querySelectorAll('p')
 // paragraphs.forEach(paragraph => {
