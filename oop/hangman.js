@@ -10,20 +10,28 @@
 // Guessed "c", "b", "t" -> c*t
 
 const Hangman = function (word, remainingGuesses) {
-    word.forEach((letter) => letter = letter.toLowerCase())
-    this.word = word.split()
+    word = word.toLowerCase().split('')
+    this.word = word
     this.guesses = []
     this.remainingGuesses = remainingGuesses
 }
 
 Hangman.prototype.getPuzzle = function () {
-    const word = this.word
+    let word = this.word
+    let mergedWords = ''
+    
     word.forEach((letter) => {
-        letter = '*'
+        if (this.guesses.includes(letter) || letter === ' ') {
+            mergedWords += letter
+        } else {
+            mergedWords += '*'
+        }
     })
+
+    return mergedWords
 }
 
-const game1 = new Hangman('Caterpiller', 3)
-const game2 = new Hangman('cat', 3)
+const game1 = new Hangman('Caterpiller Boy', 3)
+// const game2 = new Hangman('cat', 3)
 
 console.log(game1.getPuzzle())
