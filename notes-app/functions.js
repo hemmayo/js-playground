@@ -1,5 +1,5 @@
 // Read exxisting notes from local storage
-const getSavedNotes = function () {
+const getSavedNotes = () => {
     let notes = []
     let notesJSON = localStorage.getItem('notes')
     if (notesJSON){
@@ -9,7 +9,7 @@ const getSavedNotes = function () {
 }
 
 // Remove note
-const removeNote = function (id) {
+const removeNote = (id) => {
     const noteIndex = notes.findIndex((note) => note.id === id)
     if (noteIndex > -1) {
         notes.splice(noteIndex, 1)
@@ -18,7 +18,7 @@ const removeNote = function (id) {
 }
 
 // Generate notes dom
-const generateNoteDOM = function (note) {
+const generateNoteDOM = (note) => {
     const noteEl = document.createElement('div')
     const textEl = document.createElement('a')
     const button = document.createElement('button')
@@ -41,7 +41,7 @@ const generateNoteDOM = function (note) {
 }
 
 // Render application notes
-const renderNotes = function (notes, filters) {
+const renderNotes = (notes, filters) => {
     document.querySelector('#notes').innerHTML = ''
     if(notes.length > 0) {
         let filteredNotes = notes.filter(note => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
@@ -74,6 +74,6 @@ const renderNotes = function (notes, filters) {
 }
 
 // Save notes to local storage
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
     localStorage.setItem('notes', JSON.stringify(notes))
 }

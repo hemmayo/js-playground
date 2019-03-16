@@ -19,7 +19,7 @@ const filters = {
 // Print a paragraph for each todo above
 
 // Event Listener
-// document.querySelector('button').addEventListener('click', function (e) {
+// document.querySelector('button').addEventListener('click', (e) =>  {
 //     console.log('Add a new todo')
     
 // })
@@ -29,7 +29,7 @@ const filters = {
 // Setup filters and wire up a new filter input to change it
 // Create a renderTodos function to render and rerender the latest filtered data
 
-document.querySelector('#search-text').addEventListener('input', function (e){
+document.querySelector('#search-text').addEventListener('input', (e) => {
     filters.searchText = e.target.value
     renderTodos(todos, filters)
 })
@@ -40,7 +40,7 @@ document.querySelector('#search-text').addEventListener('input', function (e){
 // Rerender the application
 // Clear the input field value
 
-document.querySelector('#add-todo-form').addEventListener('submit', function (e) {
+document.querySelector('#add-todo-form').addEventListener('submit', (e) =>  {
     e.preventDefault()
     let newTodo = {
         id: uuidv4(),
@@ -59,7 +59,7 @@ document.querySelector('#add-todo-form').addEventListener('submit', function (e)
 // Update hideCompleted and rerender list on checkbox change
 // Setup rerender todos to hide completed items
 
-document.querySelector('#hideCompleted').addEventListener('change', function (e) {
+document.querySelector('#hideCompleted').addEventListener('change', (e) =>  {
     filters.hideCompleted = e.target.checked
     renderTodos(todos, filters)
 })

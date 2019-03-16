@@ -1,5 +1,5 @@
 // get saved todos
-const getSavedTodos = function () {
+const getSavedTodos = () => {
     let todos = []
     let todosJSON = localStorage.getItem('todos')
     if (todosJSON) {
@@ -9,24 +9,24 @@ const getSavedTodos = function () {
 }
 
 // save todos
-const saveTodos = function (todos) {
+const saveTodos = (todos) => {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
 // Toggle todo
-const toggleTodo = function (id) {
+const toggleTodo = (id) => {
     let index = todos.findIndex((todo) => todo.id === id)
     todos[index].completed = !todos[index].completed
 }
 
 // remove todo
-const removeTodo = function (id) {
+const removeTodo = (id) => {
     let index = todos.findIndex((todo) => todo.id === id)
     todos.splice(index, 1)
 }
 
 // generate new todo dom
-const generateTodoDOM = function (todo) {
+const generateTodoDOM = (todo) => {
     // Setup a root div
     // Setup and append a checkbox (set type attribute)
     // Setup and append a span (set text)
@@ -59,13 +59,13 @@ const generateTodoDOM = function (todo) {
 }
 
 // generate summary dom
-const generateSummary = function (todos) {
+const generateSummary = (todos) => {
     let todosLeft = todos.filter(todo => !todo.completed).length
     document.querySelector('#todo-count').textContent = `${todosLeft}`
 }
 
 // filter todos
-const filterTodos = function (todos, filters) {
+const filterTodos = (todos, filters) => {
     let filteredTodos = todos.filter(todo => todo.text.toLowerCase().includes(filters.searchText.toLowerCase()))
     
     if(filters.hideCompleted) {
@@ -75,7 +75,7 @@ const filterTodos = function (todos, filters) {
 }
 
 // render todos
-const renderTodos = function (todos, filters){
+const renderTodos = (todos, filters) => {
     let filteredTodos = filterTodos(todos, filters)
     generateSummary(filteredTodos)
     // debugger
