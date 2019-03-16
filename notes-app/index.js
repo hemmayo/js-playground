@@ -23,8 +23,10 @@ const filters = {
 
 document.querySelector('#create-note').addEventListener('submit', function (e) {
     e.preventDefault()
-    let id = uuidv4()
-    notes.push({ id, title: e.target.elements.title.value , body:e.target.elements.body.value })
+    const id = uuidv4()
+    const createdAt = moment().valueOf()
+    let updatedAt = createdAt
+    notes.push({ id, title: e.target.elements.title.value , body:e.target.elements.body.value, createdAt, updatedAt })
     saveNotes(notes)
     renderNotes(notes, filters)
     location.assign(`edit.html#${id}`)
@@ -57,4 +59,5 @@ renderNotes(notes, filters)
 
 // Dates - moment
 // const date = moment().year(2000).month('Feb').day(5)
-// console.log(date.format('MMMM D, YYYY'))
+// const date = moment('20 February 2000')
+// console.log(date.valueOf())

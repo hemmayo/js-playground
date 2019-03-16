@@ -52,10 +52,14 @@ const renderNotes = function (notes, filters) {
                 })
                 break;
             case 'edited':
-                
+                filteredNotes = filteredNotes.sort((a, b) => {
+                    return (a.updatedAt > b.updatedAt) ? -1 : (a.updatedAt < b.updatedAt) ? 1 : 0
+                })
                 break;
             case 'recent':
-                
+                filteredNotes = filteredNotes.sort((a, b) => {
+                    return (a.createdAt > b.createdAt) ? -1 : (a.createdAt < b.createdAt) ? 1 : 0
+                })
                 break;
         
             default:
