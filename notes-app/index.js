@@ -54,3 +54,7 @@ window.addEventListener('storage', function (e) {
     }
 })
 renderNotes(notes, filters)
+
+// Dates - moment
+// const date = moment().year(2000).month('Feb').day(5)
+// console.log(date.format('MMM D, YYYY'))
