@@ -14,7 +14,7 @@
 // document.querySelector('body').appendChild(newParagraph)
 
 
-const notes = getSavedNotes()
+let notes = getSavedNotes()
 
 const filters = {
     searchText: '',
@@ -23,9 +23,11 @@ const filters = {
 
 document.querySelector('#create-note').addEventListener('submit', function (e) {
     e.preventDefault()
-    notes.push({ id: uuidv4(), title: e.target.elements.title.value , body:e.target.elements.body.value })
+    let id = uuidv4()
+    notes.push({ id, title: e.target.elements.title.value , body:e.target.elements.body.value })
     saveNotes(notes)
     renderNotes(notes, filters)
+    location.assign(`edit.html#${id}`)
     e.target.reset()
 })
 
@@ -43,5 +45,12 @@ document.querySelector('#clear-notes').addEventListener('click', function (e) {
 document.querySelector('#filter-by').addEventListener('change', function (e) {
     filters.filterBy = e.target.value
     renderNotes(notes, filters)
+})
+
+window.addEventListener('storage', function (e) {
+    if (e.key === 'notes') {
+        notes = JSON.parse(e.newValue)
+        renderNotes(notes, filters)
+    }
 })
 renderNotes(notes, filters)

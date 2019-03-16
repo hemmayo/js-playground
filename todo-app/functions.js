@@ -13,6 +13,12 @@ const saveTodos = function (todos) {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
+// Toggle todo
+const toggleTodo = function (id) {
+    let index = todos.findIndex((todo) => todo.id === id)
+    todos[index].completed = !todos[index].completed
+}
+
 // remove todo
 const removeTodo = function (id) {
     let index = todos.findIndex((todo) => todo.id === id)
@@ -31,6 +37,13 @@ const generateTodoDOM = function (todo) {
     const button = document.createElement('button')
 
     checkbox.setAttribute('type', 'checkbox')
+    checkbox.checked = todo.completed
+    checkbox.addEventListener('change', function () {
+        toggleTodo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
+    })
+
     text.textContent = todo.text
     button.textContent = 'x'
     button.addEventListener('click', function () {
