@@ -1,10 +1,18 @@
-let studentScore = 19
+let studentScore = 'k'
 let maxScore = 20
 
 let getPercentage = (studentScore, maxScore) => {
-    return (studentScore / maxScore) * 100
+    if (typeof studentScore === 'number' && typeof maxScore === 'number') {
+        return (studentScore / maxScore) * 100
+    } else {
+        throw Error('Arguments must be a number')
+    }
+    
 }
 let getGrade = (score) => {
+    if (typeof score !== 'number') {
+        throw Error('Score must be a number')
+    }
     let grade;
 
     if (score >= 90 && score <= 100) {
@@ -23,9 +31,15 @@ let getGrade = (score) => {
     return grade;
 }
 
-let score = getPercentage(studentScore, maxScore)
-let grade = getGrade(score)
+try {
+    let score = getPercentage(studentScore, maxScore)
+    let grade = getGrade(score)
+    console.log(`You got an ${grade} (${score}%)`)
+} catch (e) {
+    console.log('Error oo!')
+}
 
-console.log(`You got an ${grade} (${score}%)`)
+
+
 
 // console.log(getGrade(getPercentage(studentScore, maxScore)))
