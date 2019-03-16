@@ -2,10 +2,7 @@
 const getSavedTodos = () => {
     let todos = []
     let todosJSON = localStorage.getItem('todos')
-    if (todosJSON) {
-        todos = JSON.parse(todosJSON)
-    }
-    return todos
+    return (todosJSON) ? JSON.parse(todosJSON) : []
 }
 
 // save todos
