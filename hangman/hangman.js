@@ -36,12 +36,14 @@ class Hangman {
         const isUnique = (!this.guesses.includes(letter) || letter !== ' ') && this.remainingGuesses > 0 
         if (isUnique && this.getStatus().toLowerCase() === 'playing') {
             this.guesses.push(letter)
-            this.remainingGuesses--
+            if (!this.word.includes(letter)) {
+                this.remainingGuesses--
+            }
         }
     }
     getStatus () {
         const isPlaying = this.remainingGuesses > 0
-        const isFinished = !isPlaying && this.guesses.every((letter) => this.word.includes(letter))
+        const isFinished = !isPlaying && this.word.every((letter) => this.guesses.includes(letter))
         const isFailed = !isPlaying && !isFinished
         // let existsWrongGuess = false
 
