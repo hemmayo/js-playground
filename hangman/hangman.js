@@ -17,7 +17,7 @@ class Hangman {
         this.remainingGuesses = remainingGuesses
         this.status = 'Playing'
     }
-    getPuzzle () {
+    get puzzle () {
         let word = this.word
         let mergedWords = ''
         
@@ -54,7 +54,7 @@ class Hangman {
 
         return isFinished ? 'Finished' : isFailed ? 'Failed' : 'Playing'
     }
-    getStatusMessage () {
+    get statusMessage () {
         const status = this.getStatus().toLowerCase()
         return status === 'failed' ? `Nice try! The word was '${this.word.join('')}'.` : status === 'finished' ? 'Great work! You guessed the word.' : `Guesses left: ${this.remainingGuesses}`
     }
