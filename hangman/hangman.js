@@ -43,14 +43,16 @@ Hangman.prototype.guess = function (letter) {
 
 Hangman.prototype.getStatus = function () {
     const isPlaying = this.remainingGuesses > 0
-    let existsWrongGuess = false
+    const isFinished = !isPlaying && this.word.every((letter) => this.guesses.includes(letter))
+    const isFailed = !isPlaying && !isFinished
+    // let existsWrongGuess = false
 
-    this.guesses.forEach((guess) => {
-        existsWrongGuess = existsWrongGuess || !this.word.includes(guess)
-    })
+    // this.guesses.forEach((guess) => {
+    //     existsWrongGuess = existsWrongGuess || !this.word.includes(guess)
+    // })
     
-    const isFailed = !isPlaying && existsWrongGuess
-    const isFinished = !isPlaying && !existsWrongGuess
+    // const isFailed = !isPlaying && existsWrongGuess
+    // const isFinished = !isPlaying && !existsWrongGuess
 
     return isFinished ? 'Finished' : isFailed ? 'Failed' : 'Playing'
 }
