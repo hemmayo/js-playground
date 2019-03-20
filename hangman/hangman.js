@@ -14,6 +14,7 @@ const Hangman = function (word, remainingGuesses) {
     this.word = word
     this.guesses = []
     this.remainingGuesses = remainingGuesses
+    this.status = 'Playing'
 }
 
 Hangman.prototype.getPuzzle = function () {
@@ -31,7 +32,25 @@ Hangman.prototype.getPuzzle = function () {
     return mergedWords
 }
 
-const game1 = new Hangman('Caterpiller Boy', 3)
-// const game2 = new Hangman('cat', 3)
+Hangman.prototype.guess = function (letter) {
+    letter = letter.toLowerCase()
+    const isUnique = (!this.guesses.includes(letter) || letter !== ' ') && this.remainingGuesses > 0 
+    if (isUnique) {
+        this.guesses.push(letter)
+        this.remainingGuesses--
+    }
+}
 
-console.log(game1.getPuzzle())
+Hangman.prototype.getStatus = function () {
+    const isPlaying = this.remainingGuesses > 0
+    let existsWrongGuess = false
+
+    this.guesses.forEach((guess) => {
+        existsWrongGuess = existsWrongGuess || !this.word.includes(guess)
+    })
+    
+    const isFailed = !isPlaying && existsWrongGuess
+    const isFinished = !isPlaying && !existsWrongGuess
+
+    return isFinished ? 'Finished' : isFailed ? 'Failed' : 'Playing'
+}
