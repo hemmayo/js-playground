@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+        .highlight {
+            background: yellow;
+        }
+    </style>
+<body>
+    
+    <script>
+        const person = {
+            name: "Emmanuel",
+            age: 22,
+            likes: ['reading', 'coding']
+        }
+        
+        function bold(strings, ...values) {
+            let str = ''
+            strings.forEach((string, i) => {
+                str += `${string}${(values[i] && `<b>${values[i]}</b>`) || ''}`
+            });
+            return str
+        }
+        function highlight(strings, ...values) {
+            let str = ''
+            strings.forEach((string, i) => {
+                str += `${string}${(values[i] && `<div class="highlight">${values[i]}</div>`) || ''}`
+            })
+            return str
+        }
+        const str = bold`My name is ${person.name} and I'm ${person.age}.`
+        const str2 = highlight`
+            <ul>
+                ${person.likes.map((item, i) => {
+                    return `<li>${item.toUpperCase()}</li>`
+                }).join('')}
+            </ul>
+        `
+        console.log(str2)
+        document.body.innerHTML = str2
+        document.body.innerHTML += (str)
+    </script>
+</body>
+</html>
