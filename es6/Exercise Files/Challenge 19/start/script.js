@@ -13,8 +13,10 @@ var nums = {
   c: "string",
   d: 12
 };
-
 // Write code here
+function sumObjectValues(nums) {
+  return Object.entries(nums).filter(num => typeof num[1] === 'number').reduce((acc, num) => acc + num[1], 0)
+}
 
 console.log(sumObjectValues(nums));
 //42

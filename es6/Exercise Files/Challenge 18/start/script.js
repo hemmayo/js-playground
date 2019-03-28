@@ -4,16 +4,17 @@ Rewrite code below using ES6 Classes
 */
 
 "use strict";
+class Fruit {
+  constructor(title, price) {
+    this.title = title
+    this.price = price
+  }
 
-var Fruit = function(title, price) {
-  this.title = title;
-  this.price = price;
-};
+  priceInfo() {
+    return `Price of one ${this.title} is ${this.price}$`;
+  }
 
-Fruit.prototype.priceInfo = function() {
-  return `Price of one ${this.title} is \
-${this.price}$`;
-};
+}
 
 var apple = new Fruit("Apple", 2);
 console.log(apple.priceInfo());

@@ -13,6 +13,14 @@ var obj = {
 };
 
 // Write mult() function here
+// function mult(obj) {
+//   console.log(obj)
+//   return Object.entries(obj).reduce((acc, num) => acc * num[1], 1)
+// }
+
+function mult ({x, y, z}) {
+  return x * y * z
+}
 
 console.log(mult(obj));
 // 300

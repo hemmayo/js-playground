@@ -12,6 +12,13 @@ var vowels = ["a", "e", "i", "o", "u"];
 var str = "Today is best day of my life";
 
 // Write code here
+vowelsCount = [...str].reduce((acc, letter) => vowels.includes(letter) ? acc + 1 : acc + 0, 0)
+
+// for(let s of str) {
+//     if(vowels.includes(s)) {
+//         vowelsCount++
+//     }
+// }
 
 console.log(vowelsCount);
 // 8
